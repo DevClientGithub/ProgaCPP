@@ -26,4 +26,14 @@ public:
         int randomValue = random(a, b);
         return a + b - randomValue;
     }
+
+    static void dupeData(int*& variable, int size) {
+        int* newVariable = new int[size * 2];
+        for (int i = 0; i < size; i++) {
+            newVariable[i] = variable[i];
+        }
+        delete[] variable;
+        variable = newVariable;
+    }
+
 };
