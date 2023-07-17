@@ -14,7 +14,11 @@ public:
     }
 
     static int random(int min, int max) {
-        srand(static_cast<unsigned int>(time(0))); // Seed the random number generator
+        static bool isSeeded = false;
+        if (!isSeeded) {
+            srand(static_cast<unsigned int>(time(0)));
+            isSeeded = true;
+        }
         return rand() % (max - min + 1) + min;
     }
 
