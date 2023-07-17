@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
+    <ClInclude Include="CheckData.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="String.h" />
   </ItemGroup>
