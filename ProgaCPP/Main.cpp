@@ -1,7 +1,6 @@
 #include <iostream>
 
 int main() {
-	int var = 0;
-	var++;
-	std::cout << var;
+	int sus = 228;
+	std::cout << sus;
 }
