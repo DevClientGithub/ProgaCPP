@@ -1,6 +1,7 @@
 #include <iostream>
 
 int main() {
-	int hueta = 0;
-	std::cout << hueta;
+	int var = 0;
+	var++;
+	std::cout << var;
 }
