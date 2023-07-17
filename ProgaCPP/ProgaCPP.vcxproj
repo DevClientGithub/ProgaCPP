@@ -130,7 +130,11 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Array.h" />
+=======
+    <ClInclude Include="String.h" />
+>>>>>>> dd2f5713f76bc798b86d75a8cad8bbfd727786f7
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
