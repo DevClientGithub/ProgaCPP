@@ -37,7 +37,7 @@ public:
 		this->clear();
 	}
 
-	size_t length() const {
+	size_t length() const noexcept {
 		return this->size;
 	}
 
@@ -79,7 +79,7 @@ public:
 		}
 	}
 
-	T& operator[](const size_t& index) {
+	T& operator[](const size_t& index) const {
 		if (index >= this->size) {
 			throw runtime_error("U use very big index");
 		}
