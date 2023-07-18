@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef CHECKDATA_H
-#define CHECKDATA_H
+#ifndef CHECKDATA_H // Ётот ifndef €вл€етс€ заменной #pragma once
+#define CHECKDATA_H // “очнее, старым способом добитьс€ такого же результата*
 
 #include <iostream>
 
