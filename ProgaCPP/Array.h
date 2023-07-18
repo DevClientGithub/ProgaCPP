@@ -2,15 +2,17 @@
 
 #include <iostream>
 
+using namespace std;
+
 //  ласс массива, принимает 2 generic значени€. 1 - тип его элементов. 2 - размер массива.
 template <typename T, const size_t size>
 class Array {
 private:
 	T items[size]; // Ёлементы самого массива.
 public:
-	Array(std::initializer_list<T> items) {
+	Array(initializer_list<T> items) {
 		if (items.size() > size) {
-			throw std::runtime_error("Error");
+			throw runtime_error("Very more items");
 		}
 
 		size_t i = 0;
@@ -26,7 +28,7 @@ public:
 
 	Array(const Array& other) {
 		if(other.length() > size) {
-			throw std::runtime_error("Error");
+			throw runtime_error("Very more items");
 		}
 
 		for (size_t i = 0; i < other.length(); i++) {

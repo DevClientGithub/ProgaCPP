@@ -81,7 +81,7 @@ public:
 
 	T& operator[](const size_t& index) {
 		if (index >= this->size) {
-			throw std::runtime_error("U use very big index");
+			throw runtime_error("U use very big index");
 		}
 
 		size_t counter = 0;
