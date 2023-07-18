@@ -9,11 +9,12 @@ class List {
 private:
 	class Node {
 	public:
-		Node* next = nullptr;
+		Node* next;
 		T data;
 
-		Node(const T& data) {
+		Node(const T& data, const Node*& next = nullptr) {
 			this->data = data;
+			this->next = next;
 		}
 	};
 
@@ -32,11 +33,15 @@ public:
 		}
 	}
 
-	size_t length() {
+	~List() {
+		this->clear();
+	}
+
+	size_t length() const {
 		return this->size;
 	}
 
-	void push(const T& item) {
+	List<T>& push(const T& item) {
 		if (this->head == nullptr) {
 			this->head = new Node(item);
 		}
@@ -51,5 +56,44 @@ public:
 		}
 
 		this->size++;
+
+		return *this;
+	}
+
+	List<T>& shift() {
+		Node* temp = this->head;
+
+		head = head->next;
+
+		delete temp;
+
+		this->size--;
+
+		return *this;
+	}
+
+
+	void clear() {
+		while (this->size) {
+			this->shift();
+		}
+	}
+
+	T& operator[](const size_t& index) {
+		if (index >= this->size) {
+			throw std::runtime_error("U use very big index");
+		}
+
+		size_t counter = 0;
+		Node* current = this->head;
+
+		while (current != nullptr) {
+			if (counter == index) {
+				return current->data;
+			}
+
+			current = current->next;
+			counter++;
+		}
 	}
 };
