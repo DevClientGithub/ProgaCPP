@@ -5,7 +5,7 @@
 
 namespace Math {
 	int random(int min, int max) {
-		static bool isSeeded = false;
+		bool isSeeded = false;
 		if (!isSeeded) {
 			srand(static_cast<unsigned int>(time(0)));
 			isSeeded = true;
