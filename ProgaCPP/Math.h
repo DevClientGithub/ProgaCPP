@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 
-double Pi = 3.141592653589793;
+double PI = 3.141592653589793;
 
 namespace Math {
 	int random(int min, int max) {
