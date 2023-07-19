@@ -32,6 +32,7 @@
 10111011 11010001 10000001 11010001 10001111*/
 
 // Я знаю что тут много говно кода, но я это всё буду фиксить потом
+
 // Управление пользователями
 class User {
 public:
@@ -40,19 +41,22 @@ public:
     std::string getName() const { return name; }
     int getId() const { return id; }
 
+    void setName(const std::string& newName) { name = newName; }
+    void setId(int newId) { id = newId; } // Этого потом не будет, но сейчас мне слишком похуй делать так, чтоб нельзя было самому сменить айди.
 private:
     std::string name;
     int id;
 };
 
+// Управление базой данных
 class Database {
 public:
-    // Добавление новой записи в базу
+    // Добавление нового Пользователя в базу
     void addUser(const User& user) {
         records.push_back(user);
     }
 
-    // Удаление записи из базы по имени
+    // Удаление Пользователя из базы по имени
     void removeUserByName(const std::string& name) {
         records.erase(std::remove_if(records.begin(), records.end(),
             [name](const User& user) {
@@ -61,7 +65,7 @@ public:
             records.end());
     }
 
-    // Поиск записи в базе по имени
+    // Поиск Пользователя в базе по имени
     User* findUserByName(const std::string& name) {
         auto it = std::find_if(records.begin(), records.end(),
             [name](const User& user) {
@@ -73,6 +77,46 @@ public:
         }
 
         return nullptr;
+    }
+
+    // Поиск Пользователя по айди
+    User* findUserById(int id) {
+        auto it = std::find_if(records.begin(), records.end(),
+            [id](const User& user) {
+                return user.getId() == id;
+            });
+
+        if (it != records.end()) {
+            return &(*it);
+        }
+
+        return nullptr;
+
+    }
+
+    // Смена имени Пользователя по айди
+    bool modifyUser(int id, const std::string& newName) {
+        auto user = findUserById(id);
+        if (user) {
+            user->setName(newName);
+            return true;
+        }
+
+        return false;
+    }
+
+    // Очистить всех пользователей
+    void clearUserList() {
+        records.clear();
+    }
+
+    // 
+    void optimizeUserList() {
+        int newId = 0;
+        for (User& user : records) {
+            user.setId(newId);
+            newId++;
+        }
     }
 
 private:
