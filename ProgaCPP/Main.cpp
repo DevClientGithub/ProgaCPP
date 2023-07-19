@@ -11,7 +11,6 @@ int main() {
 	TestBase.addUser(User("Wtf", 4));
 
 	User* user = TestBase.findUserByName("Stupid");
-	user = TestBase.findUserByName("Wtf");
 	if (user) {
 		std::cout << "Found User: " << user->getName() << ", Id: " << user->getId() << std::endl;
 	}
