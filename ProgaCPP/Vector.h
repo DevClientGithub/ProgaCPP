@@ -22,7 +22,8 @@ public:
 
 		size_t i = 0;
 		for (const T& item : items) {
-			this->items[i++] = item;
+			this->items[i] = item;
+			i++;
 		}
 	}
 
@@ -44,6 +45,19 @@ public:
 		}
 
 		this->items[this->size++] = item;
+
+		delete[] items;
+
+		return *this;
+	}
+
+	Vector<T>& pop() {
+		T* items = this->items;
+		this->items = new T[--this->size];
+
+		for (size_t i = 0; i < this->size; i++) {
+			this->items[i] = items[i];
+		}
 
 		delete[] items;
 
