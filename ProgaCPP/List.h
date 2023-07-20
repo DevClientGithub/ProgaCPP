@@ -83,6 +83,15 @@ public:
 		return *this;
 	}
 
+	List<T>& unshift(const T& item) {
+		Node* add = new Node(item, this->head);
+
+		this->head = add;
+		this->size++;
+
+		return *this;
+	}
+
 	List<T>& shift() {
 		Node* temp = this->head;
 
