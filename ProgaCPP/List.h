@@ -5,12 +5,12 @@
 using namespace std;
 
 template <typename T>
-class List {
+class List { //  ласс List, €вл€етс€ списком.
 private:
-	class Node {
+	class Node { //  ласс Node - элемент списка.
 	public:
-		Node* next;
-		T data;
+		Node* next; // ”казатель на следующий элемент в коллекции
+		T data; // ƒанные у нынешнго элемента
 
 		Node(const T& data, Node* next = nullptr) {
 			this->data = data;
@@ -18,8 +18,8 @@ private:
 		}
 	};
 
-	Node* head;
-	size_t size;
+	Node* head; // ”казатель на первый элемент в коллекции
+	size_t size; // –азмер данной коллекции
 
 public:
 	List() {
@@ -37,16 +37,18 @@ public:
 		this->clear();
 	}
 
+	// ћетод возвращающий длинну коллекции
 	size_t length() const noexcept {
 		return this->size;
 	}
 
+	// ћетод добавл€ющий новый элемент коллекции в конец.
 	List<T>& push(const T& item) {
 		if (this->head == nullptr) {
 			this->head = new Node(item);
 		}
 		else {
-			Node* current = this->head;
+			Node* current = this->head; // Ќынешний элемент
 
 			while (current->next != nullptr) {
 				current = current->next;
@@ -60,6 +62,7 @@ public:
 		return *this;
 	}
 
+	// ћетод удал€ющий элемент в конце коллекции.
 	List<T>& pop() {
 		if (this->size == 0) {
 			return *this;
@@ -69,7 +72,7 @@ public:
 			return this->shift();
 		}
 
-		Node* current = this->head;
+		Node* current = this->head; // Ќынешний элемент
 
 		while (current->next->next != nullptr) {
 			current = current->next;
@@ -83,8 +86,9 @@ public:
 		return *this;
 	}
 
+	// ћетод добавл€ющий новый элемент в начало коллекции
 	List<T>& unshift(const T& item) {
-		Node* add = new Node(item, this->head);
+		Node* add = new Node(item, this->head); // Ќовый элемент
 
 		this->head = add;
 		this->size++;
@@ -92,8 +96,9 @@ public:
 		return *this;
 	}
 
+	// ћетод удал€ющий элемент из начала коллекции
 	List<T>& shift() {
-		Node* temp = this->head;
+		Node* temp = this->head; // ¬ременный указатель на начальный элемент.
 
 		head = head->next;
 
@@ -104,7 +109,7 @@ public:
 		return *this;
 	}
 
-
+	// ћетод удал€ющий все элементы в коллекции.
 	void clear() {
 		while (this->size) {
 			this->shift();
@@ -116,8 +121,8 @@ public:
 			throw runtime_error("U use very big index");
 		}
 
-		size_t counter = 0;
-		Node* current = this->head;
+		size_t counter = 0; // —чЄтчик, в случае если он равен индексу, то вернут элемент current
+		Node* current = this->head; // Ќынешний элемент
 
 		while (current != nullptr) {
 			if (counter == index) {
