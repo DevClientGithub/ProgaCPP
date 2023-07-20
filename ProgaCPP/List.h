@@ -33,6 +33,12 @@ public:
 		}
 	}
 
+	List(const List<T>& other) { // TODO: Оптимизируй.
+		for (size_t i = 0; i < other.size; i++) {
+			this->push(other[i]);
+		}
+	}
+
 	~List() {
 		this->clear();
 	}
