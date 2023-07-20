@@ -3,20 +3,23 @@
 #include <cstdlib>
 #include <ctime>
 
-double PI_D = 3.141592653589793;
-double PI_F = 3.141592653589793f;
+constexpr double PI_D = 3.141592653589793; // constexpr как и define не тратят байты в памяти
+constexpr double  PI_F = 3.1415927f;
+constexpr double TO_RADIAN = 0.017453292519943295;
 
 namespace Math {
-	int random(int min, int max) {
+	int random(const int& min, const int& max) {
 		bool isSeeded = false;
+
 		if (!isSeeded) {
 			srand(static_cast<unsigned int>(time(0)));
 			isSeeded = true;
 		}
+
 		return rand() % (max - min + 1) + min;
 	}
 
-	int antirandom(int a, int b) {
+	int antirandom(const int& a, const int& b) {
 		int randomValue = random(a, b);
 		return a + b - randomValue;
 	}
@@ -31,6 +34,11 @@ namespace Math {
 
 		delete[] variable;
 		variable = newVariable;
+	}
+
+	double sin(const double& angle, const bool& isRadian = true) {
+		const double res = ::sin(isRadian ? angle : angle * TO_RADIAN);
+		return res;
 	}
 
 };
