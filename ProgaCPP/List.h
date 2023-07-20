@@ -12,7 +12,7 @@ private:
 		Node* next;
 		T data;
 
-		Node(const T& data, const Node*& next = nullptr) {
+		Node(const T& data, Node* next = nullptr) {
 			this->data = data;
 			this->next = next;
 		}
@@ -56,6 +56,29 @@ public:
 		}
 
 		this->size++;
+
+		return *this;
+	}
+
+	List<T>& pop() {
+		if (this->size == 0) {
+			return *this;
+		}
+
+		if (this->size == 1) {
+			return this->shift();
+		}
+
+		Node* current = this->head;
+
+		while (current->next->next != nullptr) {
+			current = current->next;
+		}
+
+		delete current->next;
+		current->next = nullptr;
+
+		this->size--;
 
 		return *this;
 	}
