@@ -96,6 +96,7 @@ public:
 	Vector<T>& reverse() {
 		for (size_t i = 0; i < this->size / 2; ++i) {
 			T temp = this->items[i];
+
 			this->items[i] = this->items[this->size - 1 - i];
 			this->items[this->size - 1 - i] = temp;
 		}
