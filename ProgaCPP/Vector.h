@@ -41,6 +41,10 @@ public:
 		}
 	}
 
+	~Vector() {
+		delete[] this->items;
+	}
+
 	Vector<T>& push(const T& item) {
 		T* items = this->items;
 		this->items = new T[this->size + 1];
