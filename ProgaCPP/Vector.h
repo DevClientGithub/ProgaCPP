@@ -64,6 +64,35 @@ public:
 		return *this;
 	}
 
+	Vector<T>& unshift(const T& item) {
+		T* items = this->items;
+		this->items = new T[++this->size];
+
+		this->items[0] = item;
+
+		for (size_t i = 1; i < this->size; i++) {
+			this->items[i] = items[i - 1];
+		}
+
+		delete[] items;
+
+		return *this;
+	}
+
+	Vector<T>& shift() {
+		T* items = this->items;
+		this->items = new T[this->size - 1];
+
+		for (size_t i = 1; i < this->size; i++) {
+			this->items[i] = items[i];
+		}
+
+		this->size--;
+		delete[] items;
+
+		return *this;
+	}
+
 	size_t length() const noexcept {
 		return this->size;
 	}
