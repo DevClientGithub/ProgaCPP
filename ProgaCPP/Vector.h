@@ -15,6 +15,11 @@ public:
 		this->items = new T[this->size];
 	}
 
+	Vector(const size_t& length) {
+		this->size = length;
+		this->items = new T[this->size];
+	}
+
 	Vector(const initializer_list<T>& items) {
 		this->size = items.size();
 
