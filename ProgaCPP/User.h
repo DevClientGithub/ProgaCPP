@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <string>
+#include <sstream>
 
 // Чтоб работало нужна молитва кодеров 228
 
@@ -42,7 +44,7 @@ public:
     int getId() const { return id; }
 
     void setName(const std::string& newName) { name = newName; }
-    void setId(int newId) { id = newId; } // Этого потом не будет, но сейчас мне слишком похуй делать так, чтоб нельзя было самому сменить айди.
+    void setId(int newId) { id = newId; } // Пусть всё таки будет
 private:
     std::string name;
     int id;
@@ -110,7 +112,7 @@ public:
         records.clear();
     }
 
-    // 
+    // Выстраивает айди пользователей по порядку
     void optimizeUserList() {
         int newId = 0;
         for (User& user : records) {
@@ -119,6 +121,32 @@ public:
         }
     }
 
+    // Чекнуть всех Юзеров
+    const std::vector<User>& getRecords() const {
+        return records;
+    }
+
 private:
     std::vector<User> records;
 };
+
+// 1 Юзер в Json
+std::string userToJson(const User& user) {
+    std::stringstream ss;
+    ss << "{\"name\":\"" << user.getName() << "\"}";
+    return ss.str();
+}
+
+// Все Юзеры в Json
+std::string usersToJson(const std::vector<User>& users) {
+    std::stringstream ss;
+    ss << "[";
+    for (size_t i = 0; i < users.size(); ++i) {
+        ss << userToJson(users[i]);
+        if (i < users.size() - 1) {
+            ss << ",";
+        }
+    }
+    ss << "]";
+    return ss.str();
+}

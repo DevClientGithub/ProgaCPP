@@ -1,5 +1,6 @@
 #include <iostream>
 #include "User.h"
+#include <fstream>
 
 int main() {
 	Database TestBase;
@@ -9,6 +10,18 @@ int main() {
 	TestBase.addUser(User("Eblan", 2));
 	TestBase.addUser(User("Stupid", 7));
 	TestBase.addUser(User("Wtf", 3));
+
+	std::string jsonData = usersToJson(TestBase.getRecords());
+
+	std::ofstream outputFile("users.json");
+	if (outputFile.is_open()) {
+		outputFile << jsonData << std::endl;
+		outputFile.close();
+		std::cout << "JSON data saved to users.json" << std::endl;
+	}
+	else {
+		std::cerr << "Unable to open the file for writing" << std::endl;
+	}
 
 	User* user = TestBase.findUserByName("Stupid");
 	TestBase.optimizeUserList();
