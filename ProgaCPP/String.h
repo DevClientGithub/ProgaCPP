@@ -6,6 +6,8 @@ class String {
 private:
 	char* data; // Строка
 	size_t size; // Длина строки
+    size_t* counter = new size_t(0); // Количество копий этой строки
+
 public:
     String(const char* str) {
         this->size = strlen(str);
@@ -19,8 +21,21 @@ public:
         this->data[this->size] = '\0';
     }
 
+    String(const String& other) {
+        this->data = other.data;
+        this->size = other.size;
+
+        (*(this->counter))++;
+    }
+
     ~String() {
-        delete[] this->data;
+        if (this->counter == 0) {
+            delete[] this->data;
+            delete this->counter;
+        }
+        else {
+            (*(this->counter))--;
+        }
     }
     // Узнать длину строки
     size_t length() const noexcept {
