@@ -71,6 +71,15 @@ public:
 		return result;
 	}
 
+	// Перевернуть строчку
+	String& reverse() {
+		for (size_t i = 0; i < this->size / 2; i++) {
+			std::swap(this->data[i], this->data[this->size - i - 1]);
+		}
+
+		return *this;
+	}
+
 	String operator+(const String& string) {
 		char* data = new char[this->size + string.size + 1]; // Новые данные при конкатенации
 
