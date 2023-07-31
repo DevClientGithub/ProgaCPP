@@ -74,10 +74,14 @@ public:
 	// Перевернуть строчку
 	String& reverse() {
 		for (size_t i = 0; i < this->size / 2; i++) {
-			std::swap(this->data[i], this->data[this->size - i - 1]);
+			swap(this->data[i], this->data[this->size - i - 1]);
 		}
 
 		return *this;
+	}
+
+	String* split(const char& delimeter) {
+
 	}
 
 	String operator+(const String& string) {
@@ -94,7 +98,7 @@ public:
 
 		data[this->size + string.size] = '\0';
 		
-		String result = data;
+		String result = data; // Результат - новая строчка
 		delete[] data;
 
 		return result;
