@@ -40,7 +40,7 @@ public:
 	}
 
 	// Привести строку к нижнему регистру
-	String toLowerCase() {
+	String toLowerCase() const {
 		char* data = new char[this->size + 1]; // Новая строка
 
 		for (size_t i = 0; i < this->size; i++) {
@@ -56,7 +56,7 @@ public:
 	}
 
 	// Привести строку к верхнему регистру
-	String toUpperCase() {
+	String toUpperCase() const {
 		char* data = new char[this->size + 1]; // Новая строка
 
 		for (size_t i = 0; i < this->size; i++) {
