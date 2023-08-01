@@ -24,6 +24,8 @@ public:
 		(*(this->counter))++;
 	}
 
+	String(): size(), data(new char[0]), counter(new size_t(0)) {}
+
 	~String() {
 		if (*(this->counter) == 0) {
 			delete[] this->data;
@@ -84,7 +86,31 @@ public:
 
 	}
 
+	String& operator=(const char* string) {
+		if (*(this->counter) == 0) {
+			delete[] this->data;
+			delete this->counter;
+		}
+		else {
+			(*(this->counter))--;
+		}
+
+		this->size = strlen(string);
+		this->data = new char[this->size + 1];
+		this->counter = new size_t(0);
+
+		for (size_t i = 0; i < this->size; i++) {
+			this->data[i] = string[i];
+		}
+
+		this->data[this->size] = '\0';
+		
+		return *this;
+	}
+
 	String operator+(const String& string) {
+		String result; // Результат - новая строчка
+
 		char* data = new char[this->size + string.size + 1]; // Новые данные при конкатенации
 
 		size_t i = 0;
@@ -98,13 +124,15 @@ public:
 
 		data[this->size + string.size] = '\0';
 		
-		String result = data; // Результат - новая строчка
+		result = data; // Результат - новая строчка
 		delete[] data;
 
 		return result;
 	}
 
 	String operator+(const char* string) {
+		String result; // Результат - новая строчка
+
 		const size_t stringSize = strlen(string); // Размер длины аргумента string
 		char* data = new char[this->size + stringSize + 1]; // Новые данные при конкатенации
 
@@ -119,7 +147,7 @@ public:
 
 		data[this->size + stringSize] = '\0';
 
-		String result = data; // Результат - новая строчка
+		result = data; // Результат - новая строчка
 		delete[] data;
 
 		return result;
