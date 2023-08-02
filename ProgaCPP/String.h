@@ -82,9 +82,17 @@ public:
 		return *this;
 	}
 
-	String* split(const char& delimeter) {
+	String* split(const char& delimiter) {}
 
-	}
+	String* split(const char* delimiter) {}
+
+	String* split(const String& delimiter) {}
+
+	bool includes(const String& string) {}
+
+	bool includes(const char* string) {}
+
+	bool includes(const char& string) {}
 
 	String& operator=(const char* string) {
 		if (*(this->counter) == 0) {
