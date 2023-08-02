@@ -92,7 +92,7 @@ public:
 
 	bool includes(const char* string) {}
 
-	bool includes(const char& string) {}
+	bool includes(const char& symbol) {}
 
 	String& operator=(const char* string) {
 		if (*(this->counter) == 0) {
