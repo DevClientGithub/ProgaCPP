@@ -116,6 +116,23 @@ public:
 		return *this;
 	}
 
+	String& operator=(const String& string) {
+		if (*(this->counter) == 0) {
+			delete[] this->data;
+			delete this->counter;
+		}
+		else {
+			(*(this->counter))--;
+		}
+
+		this->size = string.size;
+		this->data = string.data;
+		this->counter = string.counter;
+		(*(this->counter))++;
+
+		return *this;
+	}
+
 	String operator+(const String& string) {
 		String result; // Результат - новая строчка
 
