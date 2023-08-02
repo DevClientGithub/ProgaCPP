@@ -24,7 +24,7 @@ public:
 		(*(this->counter))++;
 	}
 
-	String(): size(), data(new char[0]), counter(new size_t(0)) {}
+	String(): size(), data(nullptr), counter(nullptr) {}
 
 	~String() {
 		if (*(this->counter) == 0) {
