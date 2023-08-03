@@ -12,13 +12,15 @@ private:
 	size_t* counter; // —чЄтчик копий
 
 public:
-	String(const char* string) : size(strlen(string)), data(new char[this->size + 1]), counter(new size_t(0)) {
+	String(const char* string) : size(strlen(string)), data(new char[this->size + 1]), counter(new size_t()) {
 		for (size_t i = 0; i < this->size; i++) {
 			this->data[i] = string[i];
 		}
 
 		this->data[this->size] = '\0';
 	}
+
+	String(const char& symbol): size(1), data(new char(symbol)), counter(new size_t()) {}
 
 	String(const String& string): size(string.size), data(string.data), counter(string.counter) {
 		(*(this->counter))++;
@@ -31,7 +33,7 @@ public:
 			delete[] this->data;
 			delete this->counter;
 		}
-		else {
+		else if(*(this->counter) > 0) {
 			(*(this->counter))--;
 		}
 	}
@@ -95,13 +97,7 @@ public:
 	bool includes(const char& symbol) {}
 
 	String& operator=(const char* string) {
-		if (*(this->counter) == 0) {
-			delete[] this->data;
-			delete this->counter;
-		}
-		else {
-			(*(this->counter))--;
-		}
+		this->~String();
 
 		this->size = strlen(string);
 		this->data = new char[this->size + 1];
@@ -117,13 +113,7 @@ public:
 	}
 
 	String& operator=(const String& string) {
-		if (*(this->counter) == 0) {
-			delete[] this->data;
-			delete this->counter;
-		}
-		else {
-			(*(this->counter))--;
-		}
+		this->~String();
 
 		this->size = string.size;
 		this->data = string.data;
