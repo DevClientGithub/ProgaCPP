@@ -96,12 +96,22 @@ public:
 
 	bool includes(const char& symbol) {}
 
+	String& operator=(const char& symbol) {
+		this->~String();
+
+		this->size = 1;
+		this->data = new char[symbol];
+		this->counter = new size_t();
+
+		return *this;
+	}
+
 	String& operator=(const char* string) {
 		this->~String();
 
 		this->size = strlen(string);
 		this->data = new char[this->size + 1];
-		this->counter = new size_t(0);
+		this->counter = new size_t();
 
 		for (size_t i = 0; i < this->size; i++) {
 			this->data[i] = string[i];
@@ -139,7 +149,7 @@ public:
 
 		data[this->size + string.size] = '\0';
 		
-		result = data; // Результат - новая строчка
+		result = data;
 		delete[] data;
 
 		return result;
@@ -162,7 +172,7 @@ public:
 
 		data[this->size + stringSize] = '\0';
 
-		result = data; // Результат - новая строчка
+		result = data;
 		delete[] data;
 
 		return result;
