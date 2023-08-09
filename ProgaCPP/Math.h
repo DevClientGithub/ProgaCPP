@@ -4,7 +4,9 @@
 #include <ctime>
 
 constexpr double PI_D = 3.141592653589793; // constexpr как и define не тратят байты в памяти
-constexpr double  PI_F = 3.1415927f;
+constexpr double PI_F = 3.1415927f;
+constexpr double E_D = 2.718281828459045;
+constexpr double E_F = 2.718281828459045f;
 constexpr double TO_RADIAN = 0.017453292519943295;
 
 namespace Math {
