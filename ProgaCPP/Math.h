@@ -43,4 +43,16 @@ namespace Math {
 		return res;
 	}
 
+
+	double hypotenuse(const double& a, const double& b) {
+		return ::sqrt(a * a + b * b);
+	}
+
+	double angleBetweenVectors(const double& x1, const double& y1, const double& x2, const double& y2) {
+		const double dotProduct = x1 * x2 + y1 * y2;
+		const double magnitudesProduct = hypotenuse(x1, y1) * hypotenuse(x2, y2);
+		const double angleInRadians = ::acos(dotProduct / magnitudesProduct);
+		return angleInRadians;
+	}
+
 };
