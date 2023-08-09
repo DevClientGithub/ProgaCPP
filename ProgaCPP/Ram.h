@@ -34,4 +34,13 @@ public:
     SIZE_T GetTotalPhysicalMemory() {
         return totalPhysicalMemory;
     }
+
+    /*ѕоказывает сколько весит переменна€ или же что-то другое в байтах 
+    ѕример использовани€:
+        int i = 1;
+        Ram::showSize(i); */
+    template<typename T>
+    static void showSize(const T& obj) {
+        std::cout << "Size of the object: " << sizeof(obj) << " bytes." << std::endl;
+    }
 };
