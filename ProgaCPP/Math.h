@@ -55,4 +55,7 @@ namespace Math {
 		return angleInRadians;
 	}
 
+	double circleArea(const double& radius) {
+		return PI_D * radius * radius;
+	}
 };
