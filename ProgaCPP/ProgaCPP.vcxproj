@@ -130,7 +130,6 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Array.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="CheckData.h" />
     <ClInclude Include="Math.h" />
