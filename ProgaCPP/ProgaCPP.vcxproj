@@ -133,6 +133,7 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="Ram.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
