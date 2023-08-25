@@ -99,6 +99,14 @@ public:
 		return *this;
 	}
 
+	Vector<T>& fill(const T& item) {
+		for (size_t i = 0; i < this->size; i++) {
+			this->items[i] = item;
+		}
+
+		return *this;
+	}
+
 	size_t length() const noexcept {
 		return this->size;
 	}
