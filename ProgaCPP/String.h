@@ -158,7 +158,45 @@ public:
 		return resultArray;
 	}
 
-	String* split(const String& delimiter) {}
+	String** split(const String& delimiter) {
+		size_t resultCount = 1;
+		const char* start = this->data;
+
+		while (*start != '\0') {
+			if (strstr(start, delimiter.data) == start) {
+				resultCount++;
+				start += delimiter.size;
+			}
+			else {
+				start++;
+			}
+		}
+
+		String** resultArray = new String * [resultCount + 1];
+
+		start = this->data;
+		size_t index = 0;
+
+		while (*start != '\0') {
+			const char* end = strstr(start, delimiter.data);
+			if (end == start) {
+				resultArray[index++] = new String("");
+				start += delimiter.size;
+			}
+			else if (end == nullptr) {
+				resultArray[index++] = new String(start);
+				break;
+			}
+			else {
+				resultArray[index++] = new String(start, end - start);
+				start = end + delimiter.size;
+			}
+		}
+
+		resultArray[index] = nullptr;
+
+		return resultArray;
+	}
 
 	bool includes(const String& string) {}
 
