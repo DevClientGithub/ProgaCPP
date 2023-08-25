@@ -31,6 +31,7 @@ public:
 		delete[] this->items;
 	}
 
+	// Добавить элемент в конец
 	Vector<T>& push(const T& item) {
 		T* items = this->items;
 		this->items = new T[this->size + 1];
@@ -46,6 +47,7 @@ public:
 		return *this;
 	}
 
+	// Удалить элемент из конца
 	Vector<T>& pop() {
 		T* items = this->items;
 		this->items = new T[--this->size];
@@ -59,6 +61,7 @@ public:
 		return *this;
 	}
 
+	// Добавить элемент в начало
 	Vector<T>& unshift(const T& item) {
 		T* items = this->items;
 		this->items = new T[++this->size];
@@ -74,6 +77,7 @@ public:
 		return *this;
 	}
 
+	// Удалить элемент из начала
 	Vector<T>& shift() {
 		T* items = this->items;
 		this->items = new T[this->size - 1];
@@ -88,6 +92,7 @@ public:
 		return *this;
 	}
 
+	// Перевернуть массив
 	Vector<T>& reverse() {
 		for (size_t i = 0; i < this->size / 2; ++i) {
 			T temp = this->items[i];
@@ -99,6 +104,7 @@ public:
 		return *this;
 	}
 
+	// Заполнить массив 1 значением
 	Vector<T>& fill(const T& item) {
 		for (size_t i = 0; i < this->size; i++) {
 			this->items[i] = item;
@@ -107,11 +113,13 @@ public:
 		return *this;
 	}
 
+	// Очистить массив
 	void clear() {
 		this->size = 0;
 		this->~Vector();
 	}
 
+	// Проверка на: есть ли тот или иной элемент в массива
 	bool inculdes(const T& item) const {
 		for (size_t i = 0; i < this->size; i++) {
 			if (this->items[i] == item) {
@@ -122,6 +130,7 @@ public:
 		return false;
 	}
 
+	// Поиск индекса того или иного элемента
 	size_t find(const T& item) const {
 		for (size_t i = 0; i < this->size; i++) {
 			if (this->items[i] == item) {
@@ -132,6 +141,7 @@ public:
 		return -1; // При возврате оно не будет -1 А будет конч огромным числом
 	}
 
+	// Длина массива
 	size_t length() const noexcept {
 		return this->size;
 	}
