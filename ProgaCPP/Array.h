@@ -48,6 +48,12 @@ public:
 		}
 	}
 
+	Array<T, size>& fill(const T& item) {
+		for (size_t i = 0; i < size; i++) {
+			this->items[i] = item;
+		}
+	}
+
 	T& operator[](const size_t& index) {
 		if (index >= size) {
 			return this->items[size - 1];
