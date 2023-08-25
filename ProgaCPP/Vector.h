@@ -137,11 +137,8 @@ public:
 	}
 
 	T& operator[](const size_t& index) {
-		if (index >= this->size) {
-			return this->items[this->size - 1];
-		}
-
-		return this->items[index];
+		return this->items[index]; // Плевать на проверку что: ВДРУГ ОНО УХОДИТ ЗА ГРАНИЦЫ
+		// Разраб пусть сам чекает чтоб индекс не выходил за границы массива
 	}
 
 	Vector<T>& operator=(const Vector<T>& items) {
