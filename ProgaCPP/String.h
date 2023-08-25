@@ -84,11 +84,11 @@ public:
 		return *this;
 	}
 
-	String(const char* str, size_t len) : size(len), data(new char[len + 1]), counter(new size_t(1)) {
+	String(const char* str, size_t& len) : size(len), data(new char[len + 1]), counter(new size_t()) {
 		for (size_t i = 0; i < len; i++) {
-			data[i] = str[i];
+			this->data[i] = str[i];
 		}
-		data[len] = '\0';
+		this->data[len] = '\0';
 	}
 
 	String** split(const char& delimiter) {
