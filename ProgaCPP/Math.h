@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 
-constexpr double PI_D = 3.141592653589793; // constexpr как и define не юзает байты в пам€ти
+constexpr double PI_D = 3.141592653589793; // constexpr как и define не трат€т байты в пам€ти
 constexpr float PI_F = 3.1415927f;
 constexpr double E_D = 2.718281828459045;
 constexpr float E_F = 2.718281828459045f;
