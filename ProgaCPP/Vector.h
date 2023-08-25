@@ -107,6 +107,11 @@ public:
 		return *this;
 	}
 
+	void clear() {
+		this->size = 0;
+		this->~Vector();
+	}
+
 	size_t length() const noexcept {
 		return this->size;
 	}
