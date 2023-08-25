@@ -133,6 +133,9 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="Ram.h" />
+    <ClInclude Include="Array.h" />
+    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
