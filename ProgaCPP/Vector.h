@@ -122,6 +122,16 @@ public:
 		return false;
 	}
 
+	size_t find(const T& item) const {
+		for (size_t i = 0; i < this->size; i++) {
+			if (this->items[i] == item) {
+				return i;
+			}
+		}
+
+		return -1; // При возврате оно не будет -1 А будет конч огромным числом
+	}
+
 	size_t length() const noexcept {
 		return this->size;
 	}
