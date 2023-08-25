@@ -84,7 +84,7 @@ public:
 		return *this;
 	}
 
-	String(const char* str, size_t& len) : size(len), data(new char[len + 1]), counter(new size_t()) {
+	String(const char* str, size_t len) : size(len), data(new char[len + 1]), counter(new size_t()) {
 		for (size_t i = 0; i < len; i++) {
 			this->data[i] = str[i];
 		}
@@ -118,7 +118,45 @@ public:
 		return resultArray;
 	}
 
-	String* split(const char* delimiter) {}
+	String** split(const char* delimiter) {
+		size_t resultCount = 1;
+		const char* start = this->data;
+
+		while (*start != '\0') {
+			if (strstr(start, delimiter) == start) {
+				resultCount++;
+				start += strlen(delimiter);
+			}
+			else {
+				start++;
+			}
+		}
+
+		String** resultArray = new String * [resultCount + 1];
+
+		start = this->data;
+		size_t index = 0;
+
+		while (*start != '\0') {
+			const char* end = strstr(start, delimiter);
+			if (end == start) {
+				resultArray[index++] = new String("");
+				start += strlen(delimiter);
+			}
+			else if (end == nullptr) {
+				resultArray[index++] = new String(start);
+				break;
+			}
+			else {
+				resultArray[index++] = new String(start, end - start);
+				start = end + strlen(delimiter);
+			}
+		}
+
+		resultArray[index] = nullptr;
+
+		return resultArray;
+	}
 
 	String* split(const String& delimiter) {}
 

@@ -2,8 +2,8 @@
 #include "String.h"
 
 int main() {
-    const char* input = "Hello,world,this,is,a,test";
-    char delimiter = ',';
+    const char* input = "stonks;sugoma;amogus;pizdec";
+    const char* delimiter = ";";
 
     String str(input);
     String** substrings = str.split(delimiter);
