@@ -112,6 +112,16 @@ public:
 		this->~Vector();
 	}
 
+	bool inculdes(const T& item) const {
+		for (size_t i = 0; i < this->size; i++) {
+			if (this->items[i] == item) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	size_t length() const noexcept {
 		return this->size;
 	}
