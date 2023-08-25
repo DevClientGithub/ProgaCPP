@@ -10,34 +10,20 @@ private:
 	size_t size;
 	T* items;
 public:
-	Vector() {
-		this->size = 0;
-		this->items = new T[this->size];
-	}
+	Vector(): size(), items(new T[this->size]) {}
 
-	Vector(const size_t& length) {
-		this->size = length;
-		this->items = new T[this->size];
-	}
+	Vector(const size_t& length): size(length), items(new T[this->size]) {}
 
-	Vector(const initializer_list<T>& items) {
-		this->size = items.size();
-
-		this->items = new T[this->size];
-
+	Vector(const initializer_list<T>& items): size(items.size()), items(new T[this->size]) {
 		size_t i = 0;
 		for (const T& item : items) {
-			this->items[i] = item;
-			i++;
+			this->items[i++] = item;
 		}
 	}
 
-	Vector(const Vector<T>& items) {
-		this->size = items.size;
-		this->items = new T[this->size];
-
+	Vector(const Vector<T>& items): size(items.size), items(new T[this->size]) {
 		for (size_t i = 0; i < this->size; i++) {
-			this->items[i] = items[i];
+			this->items[i] = items.items[i];
 		}
 	}
 
@@ -123,5 +109,18 @@ public:
 		}
 
 		return this->items[index];
+	}
+
+	Vector<T>& operator=(const Vector<T>& items) {
+		this->~Vector();
+
+		this->size = items.size;
+		this->items = new T[this->size];
+
+		for (size_t i = 0; i < items.size; i++) {
+			this->items[i] = items.items[i];
+		}
+
+		return *this;
 	}
 };
