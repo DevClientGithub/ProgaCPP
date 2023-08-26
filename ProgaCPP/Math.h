@@ -43,6 +43,40 @@ namespace Math {
 		return res;
 	}
 
+	double cos(const double& angle, const bool& isRadian = true) {
+		const double res = ::cos(isRadian ? angle : angle * TO_RADIAN);
+		return res;
+	}
+
+	double tan(const double& angle, const bool& isRadian = true) {
+		const double res = ::tan(isRadian ? angle : angle * TO_RADIAN);
+		return res;
+	}
+
+	double exp(const double& x) {
+		const double res = ::exp(x);
+		return res;
+	}
+
+	double log(const double& x) {
+		const double res = ::log(x);
+		return res;
+	}
+
+	double sqrt(const double& x) {
+		const double res = ::sqrt(x);
+		return res;
+	}
+
+	double pow(const double& base, const double& exponent) {
+		const double res = ::pow(base, exponent);
+		return res;
+	}
+
+	double abs(const double& x) {
+		const double res = ::fabs(x);
+		return res;
+	}
 
 	double hypotenuse(const double& a, const double& b) {
 		return ::sqrt(a * a + b * b);
