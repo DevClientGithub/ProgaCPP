@@ -20,7 +20,7 @@ private:
 
 	class Iterator {
 	public:
-		Node* current;
+		Node* current; // ТЕкущий элемент при итерировании
 
 		Iterator(Node* node) : current(node) {}
 
