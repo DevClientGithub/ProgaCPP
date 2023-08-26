@@ -18,6 +18,26 @@ private:
 		}
 	};
 
+	class Iterator {
+	public:
+		Node* current;
+
+		Iterator(Node* node) : current(node) {}
+
+		T& operator*() const {
+			return this->current->data;
+		}
+
+		Iterator& operator++() {
+			current = current->next;
+			return *this;
+		}
+
+		bool operator!=(const Iterator& other) const {
+			return current != other.current;
+		}
+	};
+
 	Node* head; // Указатель на первый элемент в коллекции
 	size_t size; // Размер данной коллекции
 
@@ -34,8 +54,8 @@ public:
 	}
 
 	List(const List<T>& other) { // TODO: Оптимизируй.
-		for (size_t i = 0; i < other.size; i++) {
-			this->push(other[i]);
+		for (const T& item : other) {
+			this->push(item);
 		}
 	}
 
@@ -122,21 +142,11 @@ public:
 		}
 	}
 
-	T& operator[](const size_t& index) const {
-		if (index >= this->size) {
-			throw runtime_error("U use very big index");
-		}
+	Iterator begin() {
+		return Iterator(head);
+	}
 
-		size_t counter = 0; // Счётчик, в случае если он равен индексу, то вернут элемент current
-		Node* current = this->head; // Нынешний элемент
-
-		while (current != nullptr) {
-			if (counter == index) {
-				return current->data;
-			}
-
-			current = current->next;
-			counter++;
-		}
+	Iterator end() {
+		return Iterator(nullptr);
 	}
 };
