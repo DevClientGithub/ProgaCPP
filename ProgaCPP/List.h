@@ -29,12 +29,12 @@ private:
 		}
 
 		Iterator& operator++() {
-			current = current->next;
+			this->current = current->next;
 			return *this;
 		}
 
 		bool operator!=(const Iterator& other) const {
-			return current != other.current;
+			return this->current != other.current;
 		}
 	};
 
