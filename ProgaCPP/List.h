@@ -5,7 +5,7 @@
 using namespace std;
 
 template <typename T>
-class List { // Класс List, является списком.
+class List {
 private:
 	class Node { // Класс Node - элемент списка.
 	public:
