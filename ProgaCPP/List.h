@@ -5,7 +5,7 @@
 using namespace std;
 
 template <typename T>
-class List { // Класс List, является списком.
+class List {
 private:
 	class Node { // Класс Node - элемент списка.
 	public:
@@ -15,6 +15,26 @@ private:
 		Node(const T& data, Node* next = nullptr) {
 			this->data = data;
 			this->next = next;
+		}
+	};
+
+	class Iterator {
+	public:
+		Node* current; // ТЕкущий элемент при итерировании
+
+		Iterator(Node* node) : current(node) {}
+
+		T& operator*() const {
+			return this->current->data;
+		}
+
+		Iterator& operator++() {
+			this->current = current->next;
+			return *this;
+		}
+
+		bool operator!=(const Iterator& other) const {
+			return this->current != other.current;
 		}
 	};
 
@@ -34,8 +54,8 @@ public:
 	}
 
 	List(const List<T>& other) { // TODO: Оптимизируй.
-		for (size_t i = 0; i < other.size; i++) {
-			this->push(other[i]);
+		for (const T& item : other) {
+			this->push(item);
 		}
 	}
 
@@ -122,21 +142,11 @@ public:
 		}
 	}
 
-	T& operator[](const size_t& index) const {
-		if (index >= this->size) {
-			throw runtime_error("U use very big index");
-		}
+	Iterator begin() {
+		return Iterator(head);
+	}
 
-		size_t counter = 0; // Счётчик, в случае если он равен индексу, то вернут элемент current
-		Node* current = this->head; // Нынешний элемент
-
-		while (current != nullptr) {
-			if (counter == index) {
-				return current->data;
-			}
-
-			current = current->next;
-			counter++;
-		}
+	Iterator end() {
+		return Iterator(nullptr);
 	}
 };

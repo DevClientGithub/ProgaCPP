@@ -4,11 +4,10 @@
 
 using namespace std;
 
-// ����� �������, ��������� 2 generic ��������. 1 - ��� ��� ���������. 2 - ������ �������.
 template <typename T, const size_t size>
 class Array {
 private:
-	T items[size]; // �������� ������ �������.
+	T items[size]; // Сам массив
 public:
 	Array(initializer_list<T> items) {
 		if (items.size() > size) {
@@ -36,18 +35,19 @@ public:
 		}
 	}
 
-	// ����� ������������ ������ �������.
+	// Длина массива
 	size_t length() const {
 		return size;
 	}
 
-	// ����� ����������� ������ ������� ����������.
+	// Заполнить массив стандартными значениями
 	void clear() {
 		for (size_t i = 0; i < size; i++) {
 			this->items[i] = T();
 		}
 	}
 
+	// Заполнить массив одним типом значения
 	Array<T, size>& fill(const T& item) {
 		for (size_t i = 0; i < size; i++) {
 			this->items[i] = item;
