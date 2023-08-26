@@ -7,6 +7,8 @@ constexpr double PI_D = 3.141592653589793; // constexpr как и define не т
 constexpr float PI_F = 3.1415927f;
 constexpr double E_D = 2.718281828459045;
 constexpr float E_F = 2.7182817f;
+constexpr double GR_D = 1.618033988749895;
+constexpr float GR_F = 1.6180339f;
 constexpr double TO_RADIAN = 0.017453292519943295;
 
 namespace Math {
