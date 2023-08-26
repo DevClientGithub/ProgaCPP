@@ -40,6 +40,17 @@ public:
 		return size;
 	}
 
+	// Пузырьковая сортировка
+	void bubbleSort() {
+		for (size_t i = 0; i < size - 1; ++i) {
+			for (size_t j = 0; j < size - i - 1; ++j) {
+				if (this->items[j] > this->items[j + 1]) {
+					swap(this->items[j], this->items[j + 1]);
+				}
+			}
+		}
+	}
+
 	// Заполнить массив стандартными значениями
 	void clear() {
 		for (size_t i = 0; i < size; i++) {
