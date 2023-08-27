@@ -10,6 +10,8 @@ private:
 	size_t size;
 	T* items;
 public:
+	static constexpr size_t noPosition = static_cast<size_t>(-1);
+
 	Vector() : size(), items(new T[this->size]) {}
 
 	Vector(const size_t& length) : size(length), items(new T[this->size]) {}
@@ -113,12 +115,6 @@ public:
 		return *this;
 	}
 
-	// Очистить массив
-	void clear() {
-		this->size = 0;
-		this->~Vector();
-	}
-
 	// Проверка на: есть ли тот или иной элемент в массива
 	bool inculdes(const T& item) const {
 		for (size_t i = 0; i < this->size; i++) {
@@ -138,7 +134,7 @@ public:
 			}
 		}
 
-		return -1; // При возврате оно не будет -1 А будет конч огромным числом
+		return this->noPosition;
 	}
 
 	// Длина массива

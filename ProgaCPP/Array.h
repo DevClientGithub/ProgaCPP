@@ -9,6 +9,8 @@ class Array {
 private:
 	T data[size]; // Сам массив
 public:
+	static constexpr size_t noPosition = static_cast<size_t>(-1);
+
 	Array(const initializer_list<T>& items) {
 		if (items.size() > size) {
 			throw runtime_error("Very more items");
@@ -47,6 +49,7 @@ public:
 		}
 	}
 
+	// Ищет элемент, и возвраещет его индекс.
 	size_t find(const T& item) const {
 		for (size_t i = 0; i < size; i++) {
 			if (this->data[i] == item) {
@@ -54,7 +57,7 @@ public:
 			}
 		}
 
-		return -1;
+		return this->noPosition;
 	}
 
 	bool includes(const T& item) const {
