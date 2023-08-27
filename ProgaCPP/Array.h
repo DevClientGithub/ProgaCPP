@@ -7,22 +7,22 @@ using namespace std;
 template <typename T, const size_t size>
 class Array {
 private:
-	T items[size]; // Сам массив
+	T data[size]; // Сам массив
 public:
-	Array(initializer_list<T> items) {
+	Array(const initializer_list<T>& items) {
 		if (items.size() > size) {
 			throw runtime_error("Very more items");
 		}
 
 		size_t i = 0;
 		for (const T& item : items) {
-			this->items[i] = item;
+			this->data[i] = item;
 			i++;
 		}
 	}
 
 	Array() {
-		this->clear();
+		this->fill();
 	}
 
 	Array(const Array& other) {
@@ -31,7 +31,7 @@ public:
 		}
 
 		for (size_t i = 0; i < other.length(); i++) {
-			this->items[i] = other.items[i];
+			this->data[i] = other.data[i];
 		}
 	}
 
@@ -40,25 +40,34 @@ public:
 		return size;
 	}
 
-	// Заполнить массив стандартными значениями
-	void clear() {
+	// Заполнить массив одним типом значения
+	Array<T, size>& fill(const T& item = T()) {
 		for (size_t i = 0; i < size; i++) {
-			this->items[i] = T();
+			this->data[i] = item;
 		}
 	}
 
-	// Заполнить массив одним типом значения
-	Array<T, size>& fill(const T& item) {
+	size_t find(const T& item) const {
 		for (size_t i = 0; i < size; i++) {
-			this->items[i] = item;
+			if (this->data[i] == item) {
+				return i;
+			}
 		}
+
+		return -1;
+	}
+
+	bool includes(const T& item) const {
+		for (size_t i = 0; i < size; i++) {
+			if (this->data[i] == item) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	T& operator[](const size_t& index) {
-		if (index >= size) {
-			return this->items[size - 1];
-		}
-
-		return this->items[index];
+		return this->data[index];
 	}
 };
