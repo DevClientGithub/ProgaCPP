@@ -9,7 +9,7 @@ class Array {
 private:
 	T data[size]; // Сам массив
 public:
-	static constexpr size_t noPosition = static_cast<size_t>(-1);
+	static constexpr size_t noPosition = static_cast<size_t>(-1); // Значение если не был найден элемент
 
 	Array(const initializer_list<T>& items) {
 		if (items.size() > size) {
@@ -60,6 +60,7 @@ public:
 		return this->noPosition;
 	}
 
+	// Есть ли элемент в массиве
 	bool includes(const T& item) const {
 		for (size_t i = 0; i < size; i++) {
 			if (this->data[i] == item) {

@@ -10,7 +10,7 @@ private:
 	size_t size;
 	T* items;
 public:
-	static constexpr size_t noPosition = static_cast<size_t>(-1);
+	static constexpr size_t noPosition = static_cast<size_t>(-1); // Значение если не был найден элемент
 
 	Vector() : size(), items(new T[this->size]) {}
 
