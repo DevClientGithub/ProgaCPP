@@ -1,8 +1,8 @@
 #pragma once
 
 namespace Math {
-	constexpr double PI_D = 3.141592653589793;
-	constexpr float PI_F = 3.1415927f;
+	constexpr double PI_D = 3.141592653589793; // Число Пи
+	constexpr float PI_F = 3.1415927f; // Число Пи
 
 	constexpr double E_D = 2.718281828459045;
 	constexpr float E_F = 2.7182817f;
@@ -10,8 +10,8 @@ namespace Math {
 	constexpr double GR_D = 1.618033988749895;
 	constexpr float GR_F = 1.6180339f;
 
-	constexpr double TO_RADIAN_D = 0.017453292519943295;
-	constexpr float TO_RADIAN_F = 0.017453292f;
+	constexpr double TO_RADIAN_D = 0.017453292519943295; // Коэф. конвертации градусов в радианы
+	constexpr float TO_RADIAN_F = 0.017453292f; // Коэф.т конвертации градусов в радианы
 
 	double sin(const double& angle, const bool& isRadian = true) {
 		const double res = ::sin(isRadian ? angle : angle * TO_RADIAN_D);
