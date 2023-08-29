@@ -29,7 +29,7 @@ namespace Math {
 	}
 
 	float cos(const float& angle, const bool& isRadian = true) {
-		const double res = ::cos(isRadian ? angle : angle * TO_RADIAN_F);
+		const float res = ::cos(isRadian ? angle : angle * TO_RADIAN_F);
 		return res;
 	}
 
