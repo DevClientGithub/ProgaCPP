@@ -130,6 +130,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryTreeSearch.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Math.h" />

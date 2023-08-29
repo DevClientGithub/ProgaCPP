@@ -10,3 +10,4 @@
 #include "Ram.h"
 #include "String.h"
 #include "Vector.h"
+#include "BinaryTreeSearch.h"
