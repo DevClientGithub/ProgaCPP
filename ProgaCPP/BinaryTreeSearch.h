@@ -2,30 +2,22 @@
 
 typedef long long int Int64;
 
-template <typename T>
 class BinaryTreeSearch {
 private:
 	class Node {
-		Int64 key;
-		T value;
+	public:
+		Int64 value;
 
 		Node* right = nullptr;
 		Node* left = nullptr;
 
-		Node(const Int64& key, const T& value) : key(key), value(value) {}
+		Node(const Int64& value) : value(value) {}
 	};
 
 public:
 	Node* root = nullptr;
 
-	void add(const Int64& key, const T& value, const Node*& node = this->root) {
-		if (node == nullptr) {
-			node = new Node(key, value);
-			return;
-		}
+	void add(const Int64& value, Node*& node = this->root) {
 
-		if (key > node->key) {
-
-		}
 	}
 };
