@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <string>
+#include <iostream>
 
 struct Point {
     double x;
@@ -67,5 +68,15 @@ struct Point {
         }
 
         return connected;
+    }
+
+    void PointToXY(int screenWidth = 1920, int screenHeight = 1080) const {
+        double screenX = x * screenWidth;
+        double screenY = y * screenHeight;
+        std::cout << "Point " << name << " on screen: X=" << screenX << ", Y=" << screenY << std::endl;
+    }
+
+    static void Clear(std::vector<Point>& points) {
+        points.clear();
     }
 };
