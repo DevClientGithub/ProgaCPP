@@ -4,6 +4,8 @@
 #include <cmath>
 #include <string>
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 struct Point {
     double x;
@@ -78,5 +80,29 @@ struct Point {
 
     static void Clear(std::vector<Point>& points) {
         points.clear();
+    }
+    void PointMove(double targetX, double targetY, double seconds = 0.0) {
+        if (seconds <= 0.0) {
+            x = targetX;
+            y = targetY;
+        }
+        else {
+            double dx = (targetX - x) / seconds;
+            double dy = (targetY - y) / seconds;
+
+            std::thread moveThread([this, targetX, targetY, dx, dy, seconds]() {
+                double elapsedTime = 0.0;
+                while (elapsedTime < seconds) {
+                    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                    elapsedTime += 0.1;
+                    x += dx * 0.1;
+                    y += dy * 0.1;
+                }
+                x = targetX;
+                y = targetY;
+                });
+
+            moveThread.join();
+        }
     }
 };
