@@ -82,4 +82,8 @@ namespace Math {
 	double circleArea(const double& radius) {
 		return PI_D * radius * radius;
 	}
+
+	double rectangleArea(const double& length, const double& width) {
+		return length * width;
+	}
 };
