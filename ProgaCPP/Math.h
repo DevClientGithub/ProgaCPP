@@ -86,4 +86,14 @@ namespace Math {
 	double rectangleArea(const double& length, const double& width) {
 		return length * width;
 	}
+
+	double angleBetweenVectors(const double& x1, const double& y1, const double& x2, const double& y2) {
+		double magnitude1 = hypotenuse(x1, y1);
+		double magnitude2 = hypotenuse(x2, y2);
+		double dotProduct = x1 * x2 + y1 * y2;
+
+		double angleInRadians = ::acos(dotProduct / (magnitude1 * magnitude2));
+
+		return angleInRadians;
+	}
 };
