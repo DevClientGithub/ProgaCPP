@@ -86,4 +86,12 @@ namespace Math {
 	double rectangleArea(const double& length, const double& width) {
 		return length * width;
 	}
+
+	double sigmoid(const double& x) {
+		return 1.0 / (1.0 + Math::exp(-x));
+	}
+
+	float sigmoid(const float& x) {
+		return 1.0f / (1.0f + Math::exp(-x));
+	}
 };
