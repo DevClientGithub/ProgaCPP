@@ -164,4 +164,17 @@ namespace Math {
 			return intPart - 1.0;
 		}
 	}
+
+	// Возвращает целое число, обозначающее знак числа двойной точности с плавающей запятой. <--- Тоже по словам майкрософта
+	double Sign(double x) {
+		if (x > 0) {
+			return 1;
+		}
+		else if (x < 0) {
+			return -1;
+		}
+		else {
+			return 0;
+		}
+	}
 };
