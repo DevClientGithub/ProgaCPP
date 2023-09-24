@@ -95,8 +95,8 @@ namespace Math {
 		return 1.0f / (1.0f + Math::exp(-x));
 	}
 
-	template <typename T>
-	T Clamp(const T& value, const T& min, const T& max) {
+	// Ограничивает значение value между минимальным (min) и максимальным (max) значениями.
+	double Clamp(const double& value, const double& min, const double& max) {
 		if (value < min) {
 			return min;
 		}
@@ -106,8 +106,25 @@ namespace Math {
 		return value;
 	}
 
-	template <typename T>
-	T Lerp(const T& a, const T& b, double t) {
-		return static_cast<T>(a + t * (b - a));
+	// Выполняет линейную интерполяцию между двумя значениями a и b. (t - ставь 0.5 если хочешь получить половину от числа)
+	double Lerp(const double& a, const double& b, double t) {
+		return a + t * (b - a);
 	}
+
+	double min(const double& a, const double& b) {
+		return (a < b) ? a : b;
+	}
+
+	double max(const double& a, const double& b) {
+		return (a > b) ? a : b;
+	}
+
+	double round(const double& x) {
+		return std::round(x);
+	}
+
+	float round(const float& x) {
+		return std::round(x);
+	}
+
 };
