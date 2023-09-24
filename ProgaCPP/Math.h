@@ -126,4 +126,14 @@ namespace Math {
 	float round(const float& x) {
 		return std::round(x);
 	}
+
+	double random(double min, double max) {
+		static bool initialized = false;
+		if (!initialized) {
+			std::srand(static_cast<unsigned int>(std::time(nullptr)));
+			initialized = true;
+		}
+
+		return min + (max - min) * (static_cast<double>(std::rand()) / RAND_MAX);
+	}
 };
