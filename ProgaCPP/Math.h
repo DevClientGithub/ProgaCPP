@@ -136,4 +136,32 @@ namespace Math {
 
 		return min + (max - min) * (static_cast<double>(std::rand()) / RAND_MAX);
 	}
+	
+	// Возвращает наименьшее целое число, которое больше или равно заданному числу с плавающей запятой двойной точности. <--- Это документация от майрокософт
+	double Ceiling(double x) {
+		int intPart = static_cast<int>(x);
+		if (x == intPart) {
+			return x;
+		}
+		else if (x > 0) {
+			return intPart + 1.0;
+		}
+		else {
+			return intPart;
+		}
+	}
+
+	// Возвращает наибольшее целое число, которое меньше или равно заданному числу с плавающей запятой двойной точности. <--- Тоже у майкрософт спиздил
+	double Floor(double x) {
+		int intPart = static_cast<int>(x);
+		if (x == intPart) {
+			return x;
+		}
+		else if (x > 0) {
+			return intPart;
+		}
+		else {
+			return intPart - 1.0;
+		}
+	}
 };
