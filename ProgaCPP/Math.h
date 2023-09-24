@@ -126,5 +126,4 @@ namespace Math {
 	float round(const float& x) {
 		return std::round(x);
 	}
-
 };
