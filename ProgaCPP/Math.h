@@ -94,4 +94,20 @@ namespace Math {
 	float sigmoid(const float& x) {
 		return 1.0f / (1.0f + Math::exp(-x));
 	}
+
+	template <typename T>
+	T Clamp(const T& value, const T& min, const T& max) {
+		if (value < min) {
+			return min;
+		}
+		else if (value > max) {
+			return max;
+		}
+		return value;
+	}
+
+	template <typename T>
+	T Lerp(const T& a, const T& b, double t) {
+		return static_cast<T>(a + t * (b - a));
+	}
 };
