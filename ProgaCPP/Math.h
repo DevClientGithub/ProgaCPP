@@ -177,4 +177,8 @@ namespace Math {
 			return 0;
 		}
 	}
+
+	double cbrt(double x) {
+		return std::pow(x, 1.0 / 3.0);
+	}
 };
