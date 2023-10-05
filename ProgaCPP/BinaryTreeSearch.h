@@ -1,6 +1,7 @@
 #pragma once
 
 template <typename T>
+
 class BinaryTreeSearch {
 private:
 	typedef long long int Int64;
@@ -18,9 +19,13 @@ private:
 	Node(const Int64& key, const T& value): key(key), value(value) {}
 	};
 
-	Node* root = nullptr;
+	Node* root;
 
 public:
+	BinaryTreeSearch(const Int64& key, const T& value) : root(new Node(key, value)) {}
+
+	BinaryTreeSearch() : root(nullptr) {}
+
 	~BinaryTreeSearch() {
 		this->clear();
 	}
@@ -43,7 +48,7 @@ public:
 		return this->add(key, value, this->root);
 	}
 
-	Node* search(const Int64& key, Node* node) {
+	Node* search(const Int64& key, Node* node) const {
 		if (node->key == key) {
 			return node;
 		}
@@ -59,8 +64,32 @@ public:
 		return node;
 	}
 
-	Node* search(const Int64& key) {
+	Node* search(const Int64& key) const {
 		return this->search(key, this->root);
+	}
+
+	Node* getMax(const Node*& node) const {
+		if (node->right != nullptr) {
+			return this->getMax(node->right);
+		}
+
+		return node;
+	}
+
+	Node* getMax() const {
+		return this->getMax(this->root);
+	}
+
+	Node* getMin(const Node*& node) const {
+		if (node->left != nullptr) {
+			return this->getMin(node->left);
+		}
+
+		return node;
+	}
+
+	Node* getMin() const {
+		return this->getMin(this->root);
 	}
 
 	void clear(Node* node) {
@@ -73,5 +102,9 @@ public:
 
 	void clear() {
 		this->clear(this->root);
+	}
+
+	Node* operator[](const Int64& key) const {
+		return this->search(key, this->root);
 	}
 };
