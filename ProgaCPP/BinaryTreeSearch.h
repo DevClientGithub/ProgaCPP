@@ -2,35 +2,53 @@
 
 template <typename T>
 
+// Бинарное Дерево Поиска
 class BinaryTreeSearch {
 private:
-	typedef long long int Int64;
-
+	// Узел дерева
 	class Node {
 	private:
-		Node* left = nullptr;
-		Node* right = nullptr;
+		Node* left = nullptr; // Левый элемент - ключ которого меньше
+		Node* right = nullptr; // Правый элемент - ключ которого больше
 	public:
-		const Int64 key;
-		T value;
+		const int64_t key; // Ключ элемента, всегда уникальный
+		T value; // Значение у узла
 
 		friend class BinaryTreeSearch;
 
-	Node(const Int64& key, const T& value): key(key), value(value) {}
+	Node(const int64_t& key, const T& value): key(key), value(value) {}
 	};
 
-	Node* root;
+	Node* root; // Корень дерева - первый элемент
+
+	// Копирование
+	Node* copy(const Node* node) const {
+		if (!node) {
+			return nullptr;
+		}
+
+		Node* newNode = new Node(node->key, node->value);
+		newNode->left = this->copy(node->left);
+		newNode->right = this->copy(node->right);
+
+		return newNode;
+	}
 
 public:
-	BinaryTreeSearch(const Int64& key, const T& value) : root(new Node(key, value)) {}
+	BinaryTreeSearch(const int64_t& key, const T& value): root(new Node(key, value)) {}
 
-	BinaryTreeSearch() : root(nullptr) {}
+	BinaryTreeSearch(): root(nullptr) {}
+
+	BinaryTreeSearch(const BinaryTreeSearch<T>& tree) {
+		this->root = this->copy(tree.root);
+	}
 
 	~BinaryTreeSearch() {
 		this->clear();
 	}
 
-	Node* add(const Int64& key, const T& value, Node*& node) {
+	// Добавить новый элемент в дерево
+	Node* add(const int64_t& key, const T& value, Node*& node) {
 		if (node == nullptr) {
 			node = new Node(key, value);
 		}
@@ -44,11 +62,13 @@ public:
 		return node;
 	}
 
-	Node* add(const Int64& key, const T& value) {
+	// Добавить новый элемент в дерево
+	Node* add(const int64_t& key, const T& value) {
 		return this->add(key, value, this->root);
 	}
 
-	Node* search(const Int64& key, Node* node) const {
+	// Найти элемент в дереве
+	Node* search(const int64_t& key, const Node*& node) const {
 		if (node->key == key) {
 			return node;
 		}
@@ -64,10 +84,12 @@ public:
 		return node;
 	}
 
-	Node* search(const Int64& key) const {
+	// Найти элемент в дереве
+	Node* search(const int64_t& key) const {
 		return this->search(key, this->root);
 	}
 
+	// Получить элемент по максимальному ключу
 	Node* getMax(const Node*& node) const {
 		if (node->right != nullptr) {
 			return this->getMax(node->right);
@@ -76,10 +98,12 @@ public:
 		return node;
 	}
 
+	// Получить элемент по максимальному ключу
 	Node* getMax() const {
 		return this->getMax(this->root);
 	}
 
+	// Получить элемент по минимальному ключу
 	Node* getMin(const Node*& node) const {
 		if (node->left != nullptr) {
 			return this->getMin(node->left);
@@ -88,11 +112,13 @@ public:
 		return node;
 	}
 
+	// Получить элемент по минимальному ключу
 	Node* getMin() const {
 		return this->getMin(this->root);
 	}
 
-	void clear(Node* node) {
+	// Очистка всего дерева
+	void clear(const Node*& node) {
 		if (node != nullptr) {
 			this->clear(node->left);
 			this->clear(node->right);
@@ -100,11 +126,12 @@ public:
 		}
 	}
 
+	// Очистка всего дерева
 	void clear() {
 		this->clear(this->root);
 	}
 
-	Node* operator[](const Int64& key) const {
+	Node* operator[](const int64_t& key) const {
 		return this->search(key, this->root);
 	}
 };
