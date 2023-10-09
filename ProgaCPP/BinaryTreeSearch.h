@@ -22,14 +22,14 @@ private:
 	Node* root; // Корень дерева - первый элемент
 
 	// Копирование
-	Node* copy(const Node* node) const {
+	Node* copyNode(const Node* node) const {
 		if (!node) {
 			return nullptr;
 		}
 
 		Node* newNode = new Node(node->key, node->value);
-		newNode->left = this->copy(node->left);
-		newNode->right = this->copy(node->right);
+		newNode->left = this->copyNode(node->left);
+		newNode->right = this->copyNode(node->right);
 
 		return newNode;
 	}
@@ -37,11 +37,11 @@ private:
 public:
 	BinaryTreeSearch(const int64_t& key, const T& value): root(new Node(key, value)) {}
 
-	BinaryTreeSearch(): root(nullptr) {}
-
 	BinaryTreeSearch(const BinaryTreeSearch<T>& tree) {
-		this->root = this->copy(tree.root);
+		this->root = this->copyNode(tree.root);
 	}
+
+	BinaryTreeSearch() : root(nullptr) {}
 
 	~BinaryTreeSearch() {
 		this->clear();
@@ -129,6 +129,56 @@ public:
 	// Очистка всего дерева
 	void clear() {
 		this->clear(this->root);
+	}
+
+	// Перестановка значений для 2 элементов
+	void permutation(const int64_t& keyOne, const int64_t& keyTwo) {
+		Node* one = this->search(keyOne);
+		Node* two = this->search(keyTwo);
+
+		T temp = one->value;
+
+		one->value = two->value;
+		two->value = temp;
+	}
+
+	// Удаление 1 узла
+	void remove(const int64_t& key, Node*& node) {
+		if (node == nullptr) {
+			return;
+		}
+
+		if (key < node->key) {
+			this->remove(key, node->left);
+		}
+		else if (key > node->key) {
+			this->remove(key, node->right);
+		}
+		else {
+			// Узел с найденным ключом
+			if (node->left == nullptr) {
+				Node* temp = node->right;
+				delete node;
+				node = temp;
+			}
+			else if (node->right == nullptr) {
+				Node* temp = node->left;
+				delete node;
+				node = temp;
+			}
+			else {
+				// У узла есть два ребенка
+				Node* temp = this->getMin(node->right); // Наименьший узел в правом поддереве
+				node->key = temp->key;
+				node->value = temp->value;
+				this->remove(temp->key, node->right);
+			}
+		}
+	}
+
+	// Удаление 1 узла
+	void remove(const int64_t& key) {
+		this->remove(key, this->root);
 	}
 
 	Node* operator[](const int64_t& key) const {
